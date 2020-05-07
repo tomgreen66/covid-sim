@@ -695,7 +695,7 @@ void InfectSweep(double t, int run) //added run number as argument in order to r
 		}
 
 
-#pragma omp parallel for private(i,k) schedule(static,1)
+#pragma omp parallel for private(i,j,k) schedule(static,1)
 	for (j = 0; j < P.NumThreads; j++)
 	{
 		for (k = 0; k < P.NumThreads; k++)

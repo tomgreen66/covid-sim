@@ -2201,7 +2201,7 @@ void AssignPeopleToPlaces(void)
 						{
 							m2 = k2 - 1; f = 0;
 						}
-#pragma omp parallel for private(i,i2,j,k,l,m,f2,f3,t,ct,s) reduction(+:ca) /* schedule(dynamic,500)*/ //add s to private variables, added g,g1,g2,i3 and nh_assigned to private variables
+//#pragma omp parallel for private(i,i2,j,k,l,m,f2,f3,t,ct,s) reduction(+:ca) /* schedule(dynamic,500)*/ //add s to private variables, added g,g1,g2,i3 and nh_assigned to private variables
 						for (i2 = m2; i2 >= f; i2--)
 						{
 							if (i2 % 1000 == 0)
@@ -2221,7 +2221,7 @@ void AssignPeopleToPlaces(void)
 										ct = CellLookup[l];
 										m = (int)(ranf() * ((double)ct->S));
 										j = -1;
-#pragma omp critical
+//#pragma omp critical
 										{
 											if (ct->susceptible[m] >= 0)
 												if ((f3) || (Places[tp][ct->susceptible[m]].AvailByAge[HOST_AGE_YEAR(k)] > 0))
@@ -2244,10 +2244,10 @@ void AssignPeopleToPlaces(void)
 									}
 									if (ranf() < s)
 									{
-#pragma omp critical
+//#pragma omp critical
 										l = (--ct->S);
 										if (m < l) ct->susceptible[m] = ct->susceptible[l];
-#pragma omp critical (places_treat_time)
+//#pragma omp critical (places_treat_time)
 										Places[tp][j].treat_end_time--;
 										ca++;
 										Hosts[k].PlaceLinks[tp] = j;
